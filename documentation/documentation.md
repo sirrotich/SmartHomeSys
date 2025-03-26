@@ -138,6 +138,10 @@ The system implements custom exceptions for error handling:
 - `DeviceAlreadyExistsException`: Thrown when adding a device with a duplicate name
 - `NullDeviceException`: Thrown when attempting to add a null device pointer
 
+<!--     TO START THE APPLICATION  -->
+# Starting the applicatio
+- `g++ -std=c++11 -o SmartHomeSystem src/main.cpp src/Device.cpp src/Light.cpp src/Thermostat.cpp src/SecurityCamera.cpp src/SmartHome.cpp`
+
 ## 5. OOP Principles Demonstrated
 
 ### 5.1 Encapsulation

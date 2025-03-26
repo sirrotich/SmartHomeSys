@@ -13,7 +13,10 @@ public:
         message = "Device '" + deviceName + "' not found";
     }
     
-    const char* what() const noexcept override {
+    // Add a destructor with the same exception specification as the base class
+    virtual ~DeviceNotFoundException() throw() {}
+    
+    virtual const char* what() const throw() {
         return message.c_str();
     }
 };
@@ -27,14 +30,20 @@ public:
         message = "Device '" + deviceName + "' already exists";
     }
     
-    const char* what() const noexcept override {
+    // Add a destructor with the same exception specification as the base class
+    virtual ~DeviceAlreadyExistsException() throw() {}
+    
+    virtual const char* what() const throw() {
         return message.c_str();
     }
 };
 
 class NullDeviceException : public std::exception {
 public:
-    const char* what() const noexcept override {
+    // Add a destructor with the same exception specification as the base class
+    virtual ~NullDeviceException() throw() {}
+    
+    virtual const char* what() const throw() {
         return "Cannot add null device";
     }
 };

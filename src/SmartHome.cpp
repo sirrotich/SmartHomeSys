@@ -31,17 +31,20 @@ void SmartHome::addDevice(Device* device) {
 }
 
 void SmartHome::removeDevice(const std::string& deviceName) {
-    auto it = std::find_if(devices.begin(), devices.end(), 
-                          [&deviceName](Device* d) { return d->getName() == deviceName; });
-    
-    if (it != devices.end()) {
-        delete *it;
-        devices.erase(it);
-        std::cout << deviceName << " removed from " << homeName << std::endl;
-    } else {
-        throw DeviceNotFoundException(deviceName);
+    std::vector<Device*>::iterator it = devices.begin();
+    while (it != devices.end()) {
+        if ((*it)->getName() == deviceName) {
+            delete *it;
+            devices.erase(it);
+            std::cout << deviceName << " removed from " << homeName << std::endl;
+            return;
+        }
+        ++it;
     }
+    
+    throw DeviceNotFoundException(deviceName);
 }
+
 
 Device* SmartHome::findDevice(const std::string& deviceName) {
     for (Device* device : devices) {
